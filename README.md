@@ -1,5 +1,7 @@
 # FNV Hashing Library
 
+NOTE: This is not versioned yet and needs unit tests. Probably safe, but no garuntees!
+
 This is an implemntation of the public domain [FNV Non-Cryptographic hash function](https://www.ietf.org/archive/id/draft-eastlake-fnv-21.html) created by Glenn Fowler, Landon Curt Noll, and Klem-Phong Vo.
 
 This project is based on the [official fnv library](https://github.com/lcn2/fnv) with changes:
