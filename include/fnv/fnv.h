@@ -43,7 +43,8 @@ extern "C" {
 #define FNV_EXTERN
 #endif
 
-#if !defined(FNV_NO_GCC_OPTIMIZATION) && defined(__GNUC__) && !defined(__clang__)
+#if !defined(FNV_NO_GCC_OPTIMIZATION) && defined(__GNUC__) &&                  \
+    !defined(__clang__)
 #define FNV_GCC_OPTIMIZATION
 #endif
 
@@ -52,18 +53,20 @@ extern "C" {
 #define FNV_64_1A_INIT ((uint64_t)0xcbf29ce484222325ULL)
 
 FNV_EXTERN uint32_t FNV_hashNextBuffer32_1a(void *buffer, size_t size,
-                                          uint32_t hash);
+                                            uint32_t hash);
 
-#define FNV_hashBuffer32_1a(buffer, size) FNV_hashNextBuffer32_1a((buffer), (size), FNV_32_1A_INIT)
+#define FNV_hashBuffer32_1a(buffer, size)                                      \
+  FNV_hashNextBuffer32_1a((buffer), (size), FNV_32_1A_INIT)
 
 FNV_EXTERN uint32_t FNV_hashNextCstr32_1a(char *cstr, uint32_t hash);
 
 #define FNV_hashCstr32_1a(cstr) FNV_hashNextCstr32_1a((cstr), FNV_32_1A_INIT)
 
 FNV_EXTERN uint64_t FNV_hashNextBuffer64_1a(void *buffer, size_t size,
-                                          uint64_t hash);
+                                            uint64_t hash);
 
-#define FNV_hashBuffer64_1a(buffer, size) FNV_hashNextBuffer64_1a((buffer), (size), FNV_32_1A_INIT)
+#define FNV_hashBuffer64_1a(buffer, size)                                      \
+  FNV_hashNextBuffer64_1a((buffer), (size), FNV_32_1A_INIT)
 
 FNV_EXTERN uint64_t FNV_hashNextCstr64_1a(char *cstr, uint64_t hash);
 
@@ -78,7 +81,7 @@ uint32_t FNV_hashNextBuffer32_1a(void *buffer, size_t size, uint32_t hash) {
   // https://github.com/lcn2/fnv/blob/6f5d7fa29f92987311223e71ecf8b13f7c5551f2/hash_32a.c#L103
 
   unsigned char *bp = (unsigned char *)buffer; /* start of buffer */
-  unsigned char *be = bp + size;             /* beyond end of buffer */
+  unsigned char *be = bp + size;               /* beyond end of buffer */
 
   /*
    * FNV-1a hash each octet in the buffer
@@ -135,7 +138,7 @@ uint64_t FNV_hashNextBuffer64_1a(void *buffer, size_t size, uint64_t hash) {
   // https://github.com/lcn2/fnv/blob/6f5d7fa29f92987311223e71ecf8b13f7c5551f2/hash_64a.c#L116
 
   unsigned char *bp = (unsigned char *)buffer; /* start of buffer */
-  unsigned char *be = bp + size;             /* beyond end of buffer */
+  unsigned char *be = bp + size;               /* beyond end of buffer */
 
   /*
    * FNV-1a hash each octet of the buffer
