@@ -43,14 +43,6 @@ extern "C" {
 #define FNV_EXTERN
 #endif
 
-#if defined(_MSC_VER)
-#define FNV_FORCE_INLINE __forceinline
-#elif defined(__GNUC__) || defined(__clang__)
-#define FNV_FORCE_INLINE inline __attribute__((always_inline))
-#else
-#define FNV_FORCE_INLINE inline
-#endif
-
 #if !defined(FNV_NO_GCC_OPTIMIZATION) && defined(__GNUC__) && !defined(__clang__)
 #define FNV_GCC_OPTIMIZATION
 #endif
@@ -62,28 +54,20 @@ extern "C" {
 FNV_EXTERN uint32_t FNV_hashNextBuffer32_1a(void *buffer, size_t size,
                                           uint32_t hash);
 
-FNV_FORCE_INLINE uint32_t FNV_hashBuffer32_1a(void *buffer, size_t size) {
-  return FNV_hashNextBuffer32_1a(buffer, size, FNV_32_1A_INIT);
-}
+#define FNV_hashBuffer32_1a(buffer, size) FNV_hashNextBuffer32_1a((buffer), (size), FNV_32_1A_INIT)
 
 FNV_EXTERN uint32_t FNV_hashNextCstr32_1a(char *cstr, uint32_t hash);
 
-FNV_FORCE_INLINE uint32_t FNV_hashCstr32_1a(char *cstr) {
-  return FNV_hashNextCstr32_1a(cstr, FNV_32_1A_INIT);
-}
+#define FNV_hashCstr32_1a(cstr) FNV_hashNextCstr32_1a((cstr), FNV_32_1A_INIT)
 
 FNV_EXTERN uint64_t FNV_hashNextBuffer64_1a(void *buffer, size_t size,
                                           uint64_t hash);
 
-FNV_FORCE_INLINE uint64_t FNV_hashBuffer64_1a(void *buffer, size_t size) {
-  return FNV_hashNextBuffer64_1a(buffer, size, FNV_64_1A_INIT);
-}
+#define FNV_hashBuffer64_1a(buffer, size) FNV_hashNextBuffer64_1a((buffer), (size), FNV_32_1A_INIT)
 
 FNV_EXTERN uint64_t FNV_hashNextCstr64_1a(char *cstr, uint64_t hash);
 
-FNV_FORCE_INLINE uint64_t FNV_hashCstr64_1a(char *cstr) {
-  return FNV_hashNextCstr64_1a(cstr, FNV_64_1A_INIT);
-}
+#define FNV_hashCstr64_1a(cstr) FNV_hashNextCstr64_1a((cstr), FNV_32_1A_INIT)
 
 #if defined(FNV_IMPLEMENTATION)
 
